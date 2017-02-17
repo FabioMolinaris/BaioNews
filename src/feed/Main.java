@@ -63,6 +63,10 @@ public class Main {
 
 		}
 		System.out.println(bc.getAllArticoli().size());
+		
+		for(Articolo a : bc.getAllArticoliFromMostrina(new Mostrina("Cinematografo dell'alpino"))){
+				System.out.println(a.getTitolo());
+			}
 
 	}
 
