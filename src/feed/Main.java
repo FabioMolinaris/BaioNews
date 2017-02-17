@@ -42,7 +42,7 @@ public class Main {
 		try {
 			bc.getArticoliFromFile();
 			bc.getArticoliFromRss();
-			System.out.println(bc.getAllArticoli().size());
+			//System.out.println(bc.getAllArticoli().size());
 			bc.updateFileBackup();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -62,9 +62,7 @@ public class Main {
 			System.out.println(bc.get5ArticoliOrderByDate().get(i).getData());
 
 		}
-		System.out.println(bc.get5ArticoliOrderByDate().size());
-
-		
+		System.out.println(bc.getAllArticoli().size());
 
 	}
 

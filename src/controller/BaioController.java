@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -131,7 +130,7 @@ public class BaioController {
 
 			out.append(content);
 		}
-		System.out.println("Done");
+		//System.out.println("Done");
 		out.close();
 
 	}
