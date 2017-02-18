@@ -24,7 +24,7 @@ public class Feed {
             this.language = language;
             this.copyright = copyright;
             this.pubDate = pubDate;
-            this.guId = guid;
+            this.setGuId(guid);
     }
 
     public List<FeedMessage> getMessages() {
@@ -61,5 +61,13 @@ public class Feed {
                             + ", language=" + language + ", link=" + link + ", pubDate="
                             + pubDate + ", title=" + title + "]";
     }
+
+	public String getGuId() {
+		return guId;
+	}
+
+	public void setGuId(String guId) {
+		this.guId = guId;
+	}
 
 }

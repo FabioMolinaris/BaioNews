@@ -45,7 +45,9 @@ public class FeedReader {
                         String guid = "";
 
                         // First create a new XMLInputFactory
-                        XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+                        XMLInputFactory inputFactory = XMLInputFactory.newFactory();
+                        inputFactory.setProperty(XMLInputFactory.IS_REPLACING_ENTITY_REFERENCES, Boolean.TRUE);
+                        inputFactory.setProperty(XMLInputFactory.IS_COALESCING, Boolean.TRUE);
                         // Setup a new eventReader
                         InputStream in = read();
                         XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
@@ -53,8 +55,9 @@ public class FeedReader {
                         while (eventReader.hasNext()) {
                                 XMLEvent event = eventReader.nextEvent();
                                 if (event.isStartElement()) {
-                                        String localPart = event.asStartElement().getName()
+                                        String localPartPrevius = event.asStartElement().getName()
                                                         .getLocalPart();
+                                        String localPart = localPartPrevius;
                                         switch (localPart) {
                                         case ITEM:
                                                 if (isFeedHeader) {
@@ -68,6 +71,7 @@ public class FeedReader {
                                                 break;
                                         case CATEGORY:
                                         		category = getCharacterData(event, eventReader);
+                                                //System.out.println(category);
                                                 break;
                                         case LINK:
                                                 link = getCharacterData(event, eventReader);
@@ -120,4 +124,5 @@ public class FeedReader {
                         throw new RuntimeException(e);
                 }
         }
+
 }

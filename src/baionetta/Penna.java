@@ -55,4 +55,12 @@ public class Penna {
 		return true;
 	}
 
+	public List<Mostrina> getMostrine() {
+		return mostrine;
+	}
+
+	public void setMostrine(List<Mostrina> mostrine) {
+		this.mostrine = mostrine;
+	}
+
 }

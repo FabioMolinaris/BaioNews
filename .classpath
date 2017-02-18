@@ -5,5 +5,7 @@
 	<classpathentry exported="true" kind="lib" path="/home/fabio/MEGA/Server/Java/telegrambots/telegrambots-2.4.4.4-jar-with-dependencies.jar"/>
 	<classpathentry exported="true" kind="lib" path="/home/fabio/MEGA/Server/Java/telegrambots/telegrambots-meta-2.4.4.4-jar-with-dependencies.jar"/>
 	<classpathentry exported="true" kind="lib" path="/home/fabio/MEGA/Server/Java/feedreader/yarfraw-0.92-sources.jar"/>
+	<classpathentry kind="lib" path="/home/fabio/MEGA/Server/Java/telegrambots/java-telegram-bot-api-2.3.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/fabio/Downloads/commons-lang3-3.5/commons-lang3-3.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -72,7 +72,7 @@ public class BaioController {
 
 				a.setArticoloId(s.split(", ")[0]);
 
-				LocalDate date = LocalDate.parse(s.split(", ")[1], DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+				LocalDate date = LocalDate.parse(s.split(", ")[1], DateTimeFormatter.ISO_LOCAL_DATE);
 				a.setData(date);
 
 				//if(!s.split(", ")[2].isEmpty()){
@@ -119,10 +119,10 @@ public class BaioController {
 	}
 
 	public void updateFileBackup() throws IOException{
-		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/fabio/workspace/BaioNews/BaioBackup.txt")));
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/fabio/workspace/BaioNews/src/BaioBackup.txt")));
 		for (Articolo a : articoli){
 			String content = ""+a.getArticoloId()+", "
-					+a.getData()+", "
+					+a.getData().toString()+", "
 					+a.getMostrina().getMostrina()+", "
 					+a.getTitolo()+", "
 					+a.getLink()+", "
