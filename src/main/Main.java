@@ -1,17 +1,17 @@
-package feed;
+package main;
 
 import java.io.IOException;
 
 import baionetta.Articolo;
 import baionetta.Mostrina;
 import baionetta.Penna;
-import controller.BaioController;
+import model.Model;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		BaioController bc = new BaioController();
+		Model bc = new Model();
 
 		//for(Mostrina m : bc.getAllMostrine()){
 		//	System.out.println(m.getMostrina());
@@ -45,10 +45,10 @@ public class Main {
 		//}
 
 		for(int i = 0; i<5; i++){
-			System.out.println(bc.get5ArticoliOrderByDate().get(i).getTitolo());
-			System.out.println(bc.get5ArticoliOrderByDate().get(i).getData());
+			System.out.println(bc.getAllArticoliOrderByDate().get(i).getTitolo());
+			System.out.println(bc.getAllArticoliOrderByDate().get(i).getData());
 		}
-		
+
 		for(Articolo a : bc.getAllArticoliFromMostrina(new Mostrina("Cinematografo dell'alpino"))){
 				System.out.println(a.getTitolo());
 	}

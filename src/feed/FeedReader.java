@@ -46,9 +46,11 @@ public class FeedReader {
 
                         // First create a new XMLInputFactory
                         XMLInputFactory inputFactory = XMLInputFactory.newFactory();
+                        // aggiunti due setProperty per ottenere l'intero titolo e non dover immazire che simboli o spazi o a capo
                         inputFactory.setProperty(XMLInputFactory.IS_REPLACING_ENTITY_REFERENCES, Boolean.TRUE);
                         inputFactory.setProperty(XMLInputFactory.IS_COALESCING, Boolean.TRUE);
                         // Setup a new eventReader
+
                         InputStream in = read();
                         XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
                         // read the XML document
@@ -117,12 +119,14 @@ public class FeedReader {
                 return result;
         }
 
-        private InputStream read() {
-                try {
+        public InputStream read() {
+                try {if(url.openStream().available() != 0){
                         return url.openStream();
+                	}
                 } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        System.out.println("no internet connection");
                 }
+				return null;
         }
 
 }

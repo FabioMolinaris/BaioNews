@@ -13,6 +13,10 @@ import org.w3c.dom.NodeList;
 
 public class FxmlReader {
 
+	//classe usata per leggere il file di backup in xml generato da blogger e creare il documento che viene richiamato a regime
+	//quella classe non viene più chiamata e non dovrà più essere chiamata salvo imprevisti
+	//per evitare strani problemi il file di backup del sito è stato eliminato
+
 	File fXmlFile = new File("/home/fabio/workspace/BaioNewsBot/src/blog-02-16-2017.xml");
 
 	public void read(){
