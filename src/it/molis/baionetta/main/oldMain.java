@@ -7,11 +7,13 @@ import it.molis.baionetta.beans.Mostrina;
 import it.molis.baionetta.beans.Penna;
 import it.molis.baionetta.model.Model;
 
-public class Main {
+public class oldMain {
 
+	Model bc = new Model();
+
+/*
 	public static void main(String[] args) {
 
-		Model bc = new Model();
 
 		//for(Mostrina m : bc.getAllMostrine()){
 		//	System.out.println(m.getMostrina());
@@ -27,14 +29,7 @@ public class Main {
 		//for(Articolo a : bc.getAllArticoliFromMostrina(new Mostrina("Obice"))){
 		//	System.out.println(a.getTitolo());
 		//}
-		try {
-			bc.getArticoliFromFile();
-			bc.getArticoliFromRss();
-			System.out.println(bc.getAllArticoli().size());
-			bc.updateFileBackup();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
 
 		//for(Articolo a : bc.getAllArticoliFromPenna(new Penna("Daniele Barale"))){
 		//	System.out.println(a.getTitolo());
@@ -51,8 +46,21 @@ public class Main {
 
 		for(Articolo a : bc.getAllArticoliFromMostrina(new Mostrina("Cinematografo dell'alpino"))){
 				System.out.println(a.getTitolo());
-	}
+		}
+		Articolo a = bc.getUltimoArticolo();
+		System.out.print(a.getLink());
 
     }
+*/
+	public void start(){
+		try {
+			bc.getArticoliFromFile();
+			bc.getArticoliFromRss();
+			System.out.println(bc.getAllArticoli().size());
+			bc.updateFileBackup();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

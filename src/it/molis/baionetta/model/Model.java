@@ -187,4 +187,8 @@ public class Model {
 		Collections.sort(articoliOrdinati);
 		return articoliOrdinati;
 	}
+
+	public Articolo getUltimoArticolo() {
+		return getAllArticoliOrderByDate().get(0);
+	}
 }

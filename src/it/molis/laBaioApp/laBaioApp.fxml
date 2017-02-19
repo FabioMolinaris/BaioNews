@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="it.molis.laBaioApp.laBaioAppController">
+   <top>
+      <Label text="La Baionetta" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <SplitPane BorderPane.alignment="CENTER">
+         <items>
+            <VBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <Label text="Titolo" />
+                        <Label fx:id="txtTitolo" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0">
+                     <children>
+                        <Label text="Mostrina" />
+                        <Label fx:id="txtMostrina" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label text="Cerca per titolo" />
+                        <TextField fx:id="txtCercaTitolo" />
+                        <Button mnemonicParsing="false" onAction="#doCercaTitolo" text="Cerca" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="42.0">
+                     <children>
+                        <Label text="Cerca per mostrina" />
+                        <TextField fx:id="txtCercaMostrina" />
+                        <Button mnemonicParsing="false" onAction="#doCercaMostrina" text="Cerca" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="228.0">
+                     <children>
+                        <Label text="Cerca per autore" />
+                        <TextField fx:id="txtCercaAutore" />
+                        <Button mnemonicParsing="false" onAction="#doCercaAutore" text="Cerca" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="94.0">
+                     <children>
+                        <Label text="Cerca per data" />
+                        <ComboBox fx:id="cbxGiorno" onAction="#doGiorno" />
+                        <ComboBox fx:id="cbxMese" layoutX="107.0" layoutY="10.0" onAction="#doMese" />
+                        <ComboBox fx:id="cbxAnno" layoutX="313.0" layoutY="10.0" onAction="#doAnno" />
+                        <Button mnemonicParsing="false" onAction="#doCercaAutore" text="Cerca" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </items>
+      </SplitPane>
+   </center>
+   <bottom>
+      <SplitPane dividerPositions="0.29797979797979796" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane>
+               <children>
+                  <Pane>
+                     <children>
+                        <WebView fx:id="webArticolo" layoutX="-64.0" layoutY="37.0" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+          <AnchorPane />
+        </items>
+      </SplitPane>
+   </bottom>
+</BorderPane>
