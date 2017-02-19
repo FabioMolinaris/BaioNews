@@ -1,4 +1,4 @@
-package feed;
+package it.molis.baionetta.feed;
 
 import java.io.File;
 import java.io.PrintWriter;

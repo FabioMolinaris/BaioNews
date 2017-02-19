@@ -1,11 +1,11 @@
-package main;
+package it.molis.baionetta.main;
 
 import java.io.IOException;
 
-import baionetta.Articolo;
-import baionetta.Mostrina;
-import baionetta.Penna;
-import model.Model;
+import it.molis.baionetta.beans.Articolo;
+import it.molis.baionetta.beans.Mostrina;
+import it.molis.baionetta.beans.Penna;
+import it.molis.baionetta.model.Model;
 
 public class Main {
 

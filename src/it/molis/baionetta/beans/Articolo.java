@@ -1,4 +1,4 @@
-package baionetta;
+package it.molis.baionetta.beans;
 
 import java.time.LocalDate;
 

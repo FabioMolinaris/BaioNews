@@ -1,4 +1,4 @@
-package model;
+package it.molis.baionetta.model;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,12 +16,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import baionetta.Articolo;
-import baionetta.Mostrina;
-import baionetta.Penna;
-import feed.Feed;
-import feed.FeedMessage;
-import feed.FeedReader;
+import it.molis.baionetta.beans.Articolo;
+import it.molis.baionetta.beans.Mostrina;
+import it.molis.baionetta.beans.Penna;
+import it.molis.baionetta.feed.Feed;
+import it.molis.baionetta.feed.FeedMessage;
+import it.molis.baionetta.feed.FeedReader;
 
 public class Model {
 

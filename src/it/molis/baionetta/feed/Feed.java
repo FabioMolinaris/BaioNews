@@ -1,4 +1,4 @@
-package feed;
+package it.molis.baionetta.feed;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package feed;
+package it.molis.baionetta.feed;
 
 public class FeedMessage {
 
