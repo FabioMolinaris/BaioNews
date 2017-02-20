@@ -63,7 +63,7 @@ public class Model {
 		String s;
 		BufferedReader reader;
 		try {
-			reader = new BufferedReader(new FileReader("/home/fabio/workspace/BaioNews/src/BaioBackup.txt") );
+			reader = new BufferedReader(new FileReader("/home/fabio/workspace/BaioNews/src/BaioBackup.txt"));
 			while( (s = reader.readLine()) != null ){
 				//System.out.println(s);
 				//System.out.println(s.split(", ")[0]);

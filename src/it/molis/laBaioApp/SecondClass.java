@@ -13,7 +13,7 @@ public class SecondClass extends Application {
 
     @Override public void start(Stage stage) {
         stage.setTitle("La Baionetta Website");
-        scene = new Scene(browser, Color.web("#666970"));
+        scene = new Scene(browser,600,750, Color.web("#666970"));
         stage.setScene(scene);
         stage.show();
     }

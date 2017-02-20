@@ -8,7 +8,6 @@ import java.time.Year;
 import java.util.ResourceBundle;
 
 import it.molis.baionetta.beans.Articolo;
-import it.molis.baionetta.main.oldMain;
 import it.molis.baionetta.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +23,6 @@ import javafx.stage.Stage;
 public class laBaioAppController {
 
 	Model model;
-	oldMain main = new oldMain();
 
     @FXML
     private ResourceBundle resources;
@@ -67,12 +65,19 @@ public class laBaioAppController {
     @FXML
     void doCercaAutore(ActionEvent event) {
 
-    	main.start();
+    	try {
+			model.getArticoliFromFile();
+			model.getArticoliFromRss();
+			System.out.println(model.getAllArticoli().size());
+			model.updateFileBackup();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
     	String url = model.getUltimoArticolo().getLink();
     	    SecondClass sc = new SecondClass();
     	    System.out.println(url);
-    	    Browser b = new Browser(url);
+    	    Browser b = new Browser(url+"?m=1");
     	    sc.setBrowser(b);
     	   // b.setUrl("http://www.oracle.com/products/index.html");
     	    try {
