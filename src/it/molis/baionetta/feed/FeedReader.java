@@ -18,7 +18,6 @@ public class FeedReader {
         static final String AUTHOR = "author";
         static final String ITEM = "item";
         static final String PUB_DATE = "pubDate";
-        static final String GUID = "guid";
 
         final URL url;
 
@@ -38,11 +37,8 @@ public class FeedReader {
                         String category = "";
                         String title = "";
                         String link = "";
-                        String language = "";
-                        String copyright = "";
                         String author = "";
                         String pubdate = "";
-                        String guid = "";
 
                         // First create a new XMLInputFactory
                         XMLInputFactory inputFactory = XMLInputFactory.newFactory();
@@ -64,7 +60,7 @@ public class FeedReader {
                                         case ITEM:
                                                 if (isFeedHeader) {
                                                         isFeedHeader = false;
-                                                        feed = new Feed(title, link, category, language, copyright, pubdate, guid);
+                                                        feed = new Feed(title, link, category, pubdate);
                                                 }
                                                 event = eventReader.nextEvent();
                                                 break;
@@ -78,9 +74,6 @@ public class FeedReader {
                                         case LINK:
                                                 link = getCharacterData(event, eventReader);
                                                 break;
-                                        case GUID:
-                                                guid = getCharacterData(event, eventReader);
-                                                break;
                                         case AUTHOR:
                                                 author = getCharacterData(event, eventReader);
                                                 break;
@@ -93,7 +86,6 @@ public class FeedReader {
                                                 FeedMessage message = new FeedMessage();
                                                 message.setAuthor(author);
                                                 message.setCategory(category);
-                                                message.setGuid(guid);
                                                 message.setLink(link);
                                                 message.setTitle(title);
                                                 message.setDate(pubdate);
@@ -128,5 +120,4 @@ public class FeedReader {
                 }
 				return null;
         }
-
 }

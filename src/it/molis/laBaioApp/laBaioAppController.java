@@ -66,8 +66,8 @@ public class laBaioAppController {
     void doCercaAutore(ActionEvent event) {
 
     	try {
-			model.getArticoliFromFile();
 			model.getArticoliFromRss();
+			model.getArticoliFromFile();
 			System.out.println(model.getAllArticoli().size());
 			model.updateFileBackup();
 		} catch (IOException e) {

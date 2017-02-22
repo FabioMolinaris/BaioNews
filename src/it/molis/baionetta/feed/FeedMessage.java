@@ -6,7 +6,6 @@ public class FeedMessage {
 	private String category;
 	private String link;
 	private String author;
-	private String guid;
     private String pubDate;
 
     public String getTitle() {
@@ -41,19 +40,10 @@ public class FeedMessage {
             this.author = author;
     }
 
-    public String getGuid() {
-            return guid;
-    }
-
-    public void setGuid(String guid) {
-            this.guid = guid;
-    }
-
     @Override
     public String toString() {
             return "FeedMessage title=" + title + ", category=" + category
-                            + ", link=" + link + ", author=" + author + ", guid=" + guid
-                            + "data="+pubDate+"";
+                            + ", link=" + link + ", author=" + author + "data="+pubDate+"";
     }
 
 	public String getPubDate() {

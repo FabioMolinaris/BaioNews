@@ -4,16 +4,14 @@ import java.time.LocalDate;
 
 public class Articolo implements Comparable<Articolo>{
 
-	private String articoloId;
 	private String titolo;
 	private Mostrina mostrina;
 	private Penna penna;
 	private String link;
 	private LocalDate data;
 
-	public Articolo(String articoloId, String titolo, Mostrina mostrina, Penna penna, String link, LocalDate data) {
+	public Articolo(String titolo, Mostrina mostrina, Penna penna, String link, LocalDate data) {
 		super();
-		this.articoloId = articoloId;
 		this.titolo = titolo;
 		this.mostrina = mostrina;
 		this.penna = penna;
@@ -36,10 +34,6 @@ public class Articolo implements Comparable<Articolo>{
 		} else if (!link.equals(other.link))
 			return false;
 		return true;
-	}
-
-	public String getArticoloId() {
-		return articoloId;
 	}
 
 	public LocalDate getData() {
@@ -68,10 +62,6 @@ public class Articolo implements Comparable<Articolo>{
 		int result = 1;
 		result = prime * result + ((link == null) ? 0 : link.hashCode());
 		return result;
-	}
-
-	public void setArticoloId(String articoloId) {
-		this.articoloId = articoloId;
 	}
 
 	public void setData(LocalDate data) {
