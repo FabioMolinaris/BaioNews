@@ -25,7 +25,7 @@ public class Main {
 			System.out.println(bc.getAllArticoli().size());
 			bc.updateFileBackup();
 		} catch (IOException e) {
-			e.printStackTrace();
+		e.printStackTrace();
 		}
 
 		/*

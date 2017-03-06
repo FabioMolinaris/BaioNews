@@ -53,23 +53,23 @@ public class FxmlReader {
 
 					LocalDate d = LocalDate.parse(eElement.getElementsByTagName("published").item(0).getTextContent(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
 					System.out.println("Date : " +d);
-					writer.print(d+", ");
+					writer.print(d+"<> ");
 
 					System.out.println("Category : " + ((Element) nNode.getChildNodes().item(4)).getAttribute("term")+""+((Element) nNode.getChildNodes().item(5)).getAttribute("term"));
 					String str = ((Element) nNode.getChildNodes().item(3)).getAttribute("term");
 					if(str.contains("schemas")){
-						writer.print(((Element) nNode.getChildNodes().item(4)).getAttribute("term")+", ");
+						writer.print(((Element) nNode.getChildNodes().item(4)).getAttribute("term")+"<> ");
 					}else
-						writer.print(((Element) nNode.getChildNodes().item(3)).getAttribute("term")+", ");
+						writer.print(((Element) nNode.getChildNodes().item(3)).getAttribute("term")+"<> ");
 
 					System.out.println("Title : " + ((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-3)).getAttribute("title") +""+ ((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-4)).getAttribute("title"));
-					writer.print(((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-3)).getAttribute("title") +""+ ((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-4)).getAttribute("title")+", ");
+					writer.print(((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-3)).getAttribute("title") +""+ ((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-4)).getAttribute("title")+"<> ");
 
 					System.out.println("Link : " + ((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-3)).getAttribute("href") +""+ ((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-4)).getAttribute("href"));
 					if(!((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-3)).getAttribute("href").isEmpty()){
-						writer.print(((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-3)).getAttribute("href")+", ");
+						writer.print(((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-3)).getAttribute("href")+"<> ");
 					}else
-						writer.print(((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-4)).getAttribute("href")+", ");
+						writer.print(((Element) nNode.getChildNodes().item(nNode.getChildNodes().getLength()-4)).getAttribute("href")+"<> ");
 
 					System.out.println("Autore : " + eElement.getElementsByTagName("name").item(0).getTextContent());
 					writer.print(eElement.getElementsByTagName("name").item(0).getTextContent()+"\n");

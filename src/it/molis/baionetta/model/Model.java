@@ -73,22 +73,20 @@ public class Model {
 
 				Articolo a = new Articolo(null, null, null, null, null);
 
-				//a.setArticoloId(s.split(", ")[0]);
-																						
-				LocalDate date = LocalDate.parse(s.split(", ")[0], DateTimeFormatter.ISO_LOCAL_DATE);
+				LocalDate date = LocalDate.parse(s.split("<> ")[0], DateTimeFormatter.ISO_LOCAL_DATE);
 				a.setData(date);
 
 				Mostrina m = null;
-				if(!s.split(", ")[2].isEmpty()){
-					m = new Mostrina(s.split(", ")[1]);
+				if(!s.split("<> ")[2].isEmpty()){
+					m = new Mostrina(s.split("<> ")[1]);
 					a.setMostrina(m);
 					}
 
-				a.setTitolo(s.split(", ")[2]);
+				a.setTitolo(s.split("<> ")[2]);
 
-				a.setLink(s.split(", ")[3]);
+				a.setLink(s.split("<> ")[3]);
 
-				Penna p = new Penna(s.split(", ")[4]);
+				Penna p = new Penna(s.split("<> ")[4]);
 				a.setPenna(p);
 
 				articoli.add(a);
@@ -126,10 +124,10 @@ public class Model {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/fabio/workspace/BaioNews/src/BaioBackup.molis")));
 		for (Articolo a : articoli){
 			String content = ""
-					+a.getData().toString()+", "
-					+a.getMostrina().getMostrina()+", "
-					+a.getTitolo()+", "
-					+a.getLink()+", "
+					+a.getData().toString()+"<> "
+					+a.getMostrina().getMostrina()+"<> "
+					+a.getTitolo()+"<> "
+					+a.getLink()+"<> "
 					+a.getPenna().getNome()+"\n";
 
 			out.append(content);
