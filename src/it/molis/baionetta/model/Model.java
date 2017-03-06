@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -47,8 +46,8 @@ public class Model {
 
 				LocalDate date = LocalDate.parse(message.getPubDate(), DateTimeFormatter.RFC_1123_DATE_TIME);
 
-				if (message.getGuid()!=null){
-					Articolo a = new Articolo(message.getGuid(), message.getTitle(), m, p, message.getLink(), date);
+				if (message.getLink()!=null){
+					Articolo a = new Articolo(message.getTitle(), m, p, message.getLink(), date);
 					if(!articoli.contains(a))
 						articoli.add(a);
 					penne.add(p);
@@ -59,11 +58,10 @@ public class Model {
 	}
 
 	public void getArticoliFromFile() throws IOException{
-		articoli.clear();
 		String s;
 		BufferedReader reader;
 		try {
-			reader = new BufferedReader(new FileReader("/home/fabio/workspace/BaioNews/src/BaioBackup.txt") );
+			reader = new BufferedReader(new FileReader("/home/fabio/workspace/BaioNews/src/BaioBackup.molis") );
 			while( (s = reader.readLine()) != null ){
 				//System.out.println(s);
 				//System.out.println(s.split(", ")[0]);
@@ -73,23 +71,24 @@ public class Model {
 				//System.out.println(s.split(", ")[4]);
 				//System.out.println(s.split(", ")[5]);
 
-				Articolo a = new Articolo(null, null, null, null, null, null);
+				Articolo a = new Articolo(null, null, null, null, null);
 
-				a.setArticoloId(s.split(", ")[0]);
-
-				LocalDate date = LocalDate.parse(s.split(", ")[1], DateTimeFormatter.ISO_LOCAL_DATE);
+				//a.setArticoloId(s.split(", ")[0]);
+																						
+				LocalDate date = LocalDate.parse(s.split(", ")[0], DateTimeFormatter.ISO_LOCAL_DATE);
 				a.setData(date);
 
-				//if(!s.split(", ")[2].isEmpty()){
-					Mostrina m = new Mostrina(s.split(", ")[2]);
+				Mostrina m = null;
+				if(!s.split(", ")[2].isEmpty()){
+					m = new Mostrina(s.split(", ")[1]);
 					a.setMostrina(m);
-				//	}
+					}
 
-				a.setTitolo(s.split(", ")[3]);
+				a.setTitolo(s.split(", ")[2]);
 
-				a.setLink(s.split(", ")[4]);
+				a.setLink(s.split(", ")[3]);
 
-				Penna p = new Penna(s.split(", ")[5]);
+				Penna p = new Penna(s.split(", ")[4]);
 				a.setPenna(p);
 
 				articoli.add(a);
@@ -124,9 +123,9 @@ public class Model {
 	}
 
 	public void updateFileBackup() throws IOException{
-		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/fabio/workspace/BaioNews/src/BaioBackup.txt")));
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/fabio/workspace/BaioNews/src/BaioBackup.molis")));
 		for (Articolo a : articoli){
-			String content = ""+a.getArticoloId()+", "
+			String content = ""
 					+a.getData().toString()+", "
 					+a.getMostrina().getMostrina()+", "
 					+a.getTitolo()+", "
