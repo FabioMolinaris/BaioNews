@@ -1,8 +1,6 @@
 package it.molis.laBaioApp;
 
 import javafx.application.Application;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;

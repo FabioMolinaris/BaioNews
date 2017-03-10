@@ -18,6 +18,7 @@ import java.util.Set;
 import it.molis.baionetta.beans.Articolo;
 import it.molis.baionetta.beans.Mostrina;
 import it.molis.baionetta.beans.Penna;
+import it.molis.baionetta.beans.RisultatoRicerca;
 import it.molis.baionetta.feed.Feed;
 import it.molis.baionetta.feed.FeedMessage;
 import it.molis.baionetta.feed.FeedReader;
@@ -40,13 +41,13 @@ public class Model {
 			Feed feed = fd.readFeed();
 
 			for (FeedMessage message : feed.getMessages()) {
-				Mostrina m = new Mostrina(message.getCategory());
-				Penna p = creaPenna(message.getAuthor());
-				//System.out.println(p.getNome());
-
-				LocalDate date = LocalDate.parse(message.getPubDate(), DateTimeFormatter.RFC_1123_DATE_TIME);
 
 				if (message.getLink()!=null){
+					Mostrina m = new Mostrina(message.getCategory());
+					Penna p = creaPenna(message.getAuthor());
+					//System.out.println(p.getNome());
+
+					LocalDate date = LocalDate.parse(message.getPubDate(), DateTimeFormatter.RFC_1123_DATE_TIME);
 					Articolo a = new Articolo(message.getTitle(), m, p, message.getLink(), date);
 					if(!articoli.contains(a))
 						articoli.add(a);
@@ -58,31 +59,32 @@ public class Model {
 	}
 
 	public void getArticoliFromFile() throws IOException{
-		articoli.clear();
 		String s;
 		BufferedReader reader;
 		try {
-			reader = new BufferedReader(new FileReader("/home/fabio/workspace/BaioNews_App/src/BaioBackup.txt"));
+			reader = new BufferedReader(new FileReader("/home/fabio/workspace/BaioNews_App/src/BaioBackup.molis"));
 			while( (s = reader.readLine()) != null ){
 
 				Articolo a = new Articolo(null, null, null, null, null);
 
-				LocalDate date = LocalDate.parse(s.split(", ")[0], DateTimeFormatter.ISO_LOCAL_DATE);
+				LocalDate date = LocalDate.parse(s.split("<> ")[0], DateTimeFormatter.ISO_LOCAL_DATE);
 				a.setData(date);
 
-				Mostrina m = new Mostrina(s.split(", ")[1]);
+				Mostrina m = new Mostrina(s.split("<> ")[1]);
 				a.setMostrina(m);
 
-				a.setTitolo(s.split(", ")[2]);
+				a.setTitolo(s.split("<> ")[2]);
 
-				a.setLink(s.split(", ")[3]);
+				a.setLink(s.split("<> ")[3]);
 
-				Penna p = new Penna(s.split(", ")[4]);
+				Penna p = new Penna(s.split("<> ")[4]);
 				a.setPenna(p);
 
 				articoli.add(a);
 				penne.add(p);
 				mostrine.add(m);
+				p.setArticolo(a);
+				m.setArticolo(a);
 			}
 
 			reader.close();
@@ -90,6 +92,16 @@ public class Model {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		for(Articolo a : articoli)
+			for(Penna p : penne)
+				if(a.getPenna().equals(p))
+					p.setArticolo(a);
+
+		for(Articolo a : articoli)
+			for(Mostrina m : mostrine)
+				if(a.getMostrina().equals(m))
+					m.setArticolo(a);
 	}
 
 	private Penna creaPenna(String s) {
@@ -112,12 +124,12 @@ public class Model {
 	}
 
 	public void updateFileBackup() throws IOException{
-		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/fabio/workspace/BaioNews_App/src/BaioBackup.txt")));
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/fabio/workspace/BaioNews_App/src/BaioBackup.molis")));
 		for (Articolo a : articoli){
-			String content = ""+a.getData().toString()+", "
-					+a.getMostrina().getMostrina()+", "
-					+a.getTitolo()+", "
-					+a.getLink()+", "
+			String content = ""+a.getData().toString()+"<> "
+					+a.getMostrina().getMostrina()+"<> "
+					+a.getTitolo()+"<> "
+					+a.getLink()+"<> "
 					+a.getPenna().getNome()+"\n";
 
 			out.append(content);
@@ -127,12 +139,7 @@ public class Model {
 
 	}
 
-	public List<Articolo> getAllArticoliFromPenna(Penna p){
-		for(Articolo a : getAllArticoliOrderByDate()){
-			if(a.getPenna().equals(p)){
-				p.addArticoli(a);
-			}
-		}
+	public Set<Articolo> getAllArticoliFromPenna(Penna p){
 		return p.getAllArticoli();
 	}
 
@@ -140,12 +147,7 @@ public class Model {
 		return penne;
 	}
 
-	public List<Articolo> getAllArticoliFromMostrina(Mostrina m) {
-		for(Articolo a : getAllArticoliOrderByDate()){
-			if(a.getMostrina().equals(m)){
-				m.addArticoli(a);
-			}
-		}
+	public Set<Articolo> getAllArticoliFromMostrina(Mostrina m) {
 		return m.getAllArticoli();
 	}
 
@@ -159,14 +161,13 @@ public class Model {
 	}
 
 	public List<Articolo> getArticoloFromTitolo(String titolo) {
-		List<Articolo> trovati = new ArrayList<>();
-		for(Articolo a : getAllArticoliOrderByDate()){
+		Set<Articolo> trovati = new HashSet<>();
+		for(Articolo a : articoli){
 			if(a.getTitolo().contains(titolo)){
 				trovati.add(a);
 			}
 		}
-		return trovati;
-
+		return orderByDate(trovati);
 	}
 
 	public List<Articolo> getAllArticoliOrderByDate() {
@@ -175,7 +176,55 @@ public class Model {
 		return articoliOrdinati;
 	}
 
+	public List<Articolo> orderByDate(Set<Articolo> art){
+		List<Articolo> articoliOrdinati = new ArrayList<>(art);
+		Collections.sort(articoliOrdinati);
+		return articoliOrdinati;
+	}
+
 	public Articolo getUltimoArticolo() {
 		return getAllArticoliOrderByDate().get(0);
+	}
+
+	public List<Articolo> getAllArticoliFromData(LocalDate data){
+		List<Articolo> trovati = new ArrayList<>();
+		for (Articolo a : articoli){
+			if(data != null && a.getData().isEqual(data)){
+				System.out.println(data+" // "+a.getData());
+				trovati.add(a);
+			}
+		}
+		return trovati;
+	}
+
+	public List<Articolo> ricerca(String testo, Penna p, Mostrina m, LocalDate data){
+		Set<RisultatoRicerca> rrTutto = new HashSet<>();
+
+		Set<Articolo> rrSet = new HashSet<>();
+		Set<Articolo> articoliRicerca = new HashSet<>();
+		System.out.println("Inizio ricerca");
+
+		boolean flag;
+		
+		for (Articolo a : articoli){
+			flag = true;
+			if(!testo.isEmpty() && !a.getTitolo().contains(testo)){
+				flag = false;
+			}
+			if(p!=null && !a.getPenna().equals(p)){
+				flag = false;
+			}
+			if(m!=null && !a.getMostrina().equals(m)){
+				flag = false;
+			}
+			if(data!=null && data.isBefore(LocalDate.now()) && !a.getData().isEqual(data)){
+				flag = false;
+			}
+			if(flag == true){
+				rrSet.add(a);
+			}
+		}
+
+		return orderByDate(rrSet);
 	}
 }

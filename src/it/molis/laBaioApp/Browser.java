@@ -12,6 +12,7 @@ class Browser extends Region {
     final WebEngine webEngine = browser.getEngine();
 
     public Browser(String url) {
+    	
         //apply the styles
         getStyleClass().add("browser");
         // load the web page

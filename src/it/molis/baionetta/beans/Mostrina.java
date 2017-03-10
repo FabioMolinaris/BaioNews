@@ -1,14 +1,14 @@
 package it.molis.baionetta.beans;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Mostrina {
 
 	private String mostrina;
-	private List<Articolo> articoli = new ArrayList<>();
+	private Set<Articolo> articoli = new HashSet<>();
 
-	public List<Articolo> getAllArticoli() {
+	public Set<Articolo> getAllArticoli() {
 		return articoli;
 	}
 
@@ -52,6 +52,15 @@ public class Mostrina {
 		} else if (!mostrina.equals(other.mostrina))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return this.mostrina;
+	}
+
+	public void setArticolo(Articolo a) {
+		articoli.add(a);
 	}
 
 }

@@ -1,88 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.web.WebView?>
 
-
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.65" fx:controller="it.molis.laBaioApp.laBaioAppController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.molis.laBaioApp.laBaioAppController">
    <top>
-      <Label text="La Baionetta" BorderPane.alignment="CENTER" />
+      <Label text="La Baionetta App" BorderPane.alignment="CENTER" />
    </top>
    <center>
-      <SplitPane BorderPane.alignment="CENTER">
-         <items>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
             <VBox>
                <children>
                   <HBox>
                      <children>
-                        <Label text="Titolo" />
-                        <Label fx:id="txtTitolo" />
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="10.0">
-                     <children>
-                        <Label text="Mostrina" />
-                        <Label fx:id="txtMostrina" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label text="Cerca per titolo" />
-                        <TextField fx:id="txtCercaTitolo" />
-                        <Button mnemonicParsing="false" onAction="#doCercaTitolo" text="Cerca" />
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="42.0">
-                     <children>
-                        <Label text="Cerca per mostrina" />
-                        <TextField fx:id="txtCercaMostrina" />
-                        <Button mnemonicParsing="false" onAction="#doCercaMostrina" text="Cerca" />
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="228.0">
-                     <children>
-                        <Label text="Cerca per autore" />
-                        <TextField fx:id="txtCercaAutore" />
-                        <Button mnemonicParsing="false" onAction="#doCercaAutore" text="Cerca" />
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="94.0">
-                     <children>
-                        <Label text="Cerca per data" />
-                        <ComboBox fx:id="cbxGiorno" onAction="#doGiorno" />
-                        <ComboBox fx:id="cbxMese" layoutX="107.0" layoutY="10.0" onAction="#doMese" />
-                        <ComboBox fx:id="cbxAnno" layoutX="313.0" layoutY="10.0" onAction="#doAnno" />
-                        <Button mnemonicParsing="false" onAction="#doCercaAutore" text="Cerca" />
+                        <VBox>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fitHeight="147.0" fitWidth="213.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../img/Baio%20A4.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblRicerca" text="I nostri ultimi articoli" />
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                </children>
             </VBox>
-         </items>
-      </SplitPane>
+            <HBox>
+               <children>
+                  <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label fx:id="lblTitolo0" nodeOrientation="LEFT_TO_RIGHT" text="Label" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="btnLeggi0" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#doLeggi0" text="Leggi" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label fx:id="lblTitolo1" nodeOrientation="LEFT_TO_RIGHT" text="Label" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="btnLeggi1" mnemonicParsing="false" onAction="#doLeggi1" text="Leggi" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label fx:id="lblTitolo2" nodeOrientation="LEFT_TO_RIGHT" text="Label" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="btnLeggi2" mnemonicParsing="false" onAction="#doLeggi2" text="Leggi" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="174.0" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label fx:id="lblTitolo3" nodeOrientation="LEFT_TO_RIGHT" text="Label" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="btnLeggi3" mnemonicParsing="false" onAction="#doLeggi3" text="Leggi" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="200.0" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="ALWAYS">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label fx:id="lblTitolo4" nodeOrientation="LEFT_TO_RIGHT" text="Label" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="btnLeggi4" mnemonicParsing="false" onAction="#doLeggi4" text="Leggi" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="219.0" prefWidth="336.0" spacing="10.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label text="Criteri di ricerca" />
+                           </children>
+                        </HBox>
+                        <HBox fx:id="txtCercaTitolo">
+                           <children>
+                              <TextField fx:id="txtTitolo" promptText="Cerca per titolo" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <ComboBox fx:id="cbxAutore" promptText="Cerca per autore" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="26.0">
+                           <children>
+                              <ComboBox fx:id="cbxMostrina" promptText="Cerca per mostrina" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <DatePicker fx:id="cbxData" promptText="Cerca per data" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" onDragDetected="#doCerca" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#doCerca" text="Cerca" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </center>
    <bottom>
-      <SplitPane dividerPositions="0.29797979797979796" BorderPane.alignment="CENTER">
-        <items>
-          <AnchorPane>
-               <children>
-                  <Pane>
-                     <children>
-                        <WebView fx:id="webArticolo" layoutX="-64.0" layoutY="37.0" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" />
-                     </children>
-                  </Pane>
-               </children>
-            </AnchorPane>
-          <AnchorPane />
-        </items>
-      </SplitPane>
+      <HBox alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnRecenti" disable="true" mnemonicParsing="false" onAction="#doRecenti" text="&lt;- articoli più recenti" />
+            <Button fx:id="btnVecchi" disable="true" layoutX="321.0" layoutY="10.0" mnemonicParsing="false" onAction="#doVecchi" text="articoli più vecchi -&gt;" />
+            <Button fx:id="btnReset" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="352.0" layoutY="10.0" mnemonicParsing="false" onAction="#doReset" text="torna a &quot;ultimi articoli&quot;" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
    </bottom>
 </BorderPane>

@@ -36,6 +36,14 @@ public class Articolo implements Comparable<Articolo>{
 		return true;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((link == null) ? 0 : link.hashCode());
+		return result;
+	}
+
 	public LocalDate getData() {
 		return this.data;
 	}
@@ -54,14 +62,6 @@ public class Articolo implements Comparable<Articolo>{
 
 	public String getTitolo() {
 		return titolo;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((link == null) ? 0 : link.hashCode());
-		return result;
 	}
 
 	public void setData(LocalDate data) {
@@ -88,5 +88,11 @@ public class Articolo implements Comparable<Articolo>{
 	public int compareTo(Articolo o) {
 		return -getData().compareTo(o.getData());
 	}
+
+	@Override
+	public String toString() {
+		return "" + titolo + "\n" + penna.getNome() + "\n" + data;
+	}
+
 
 }
