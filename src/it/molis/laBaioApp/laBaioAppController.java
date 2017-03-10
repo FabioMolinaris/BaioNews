@@ -17,7 +17,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class laBaioAppController {
@@ -66,9 +65,6 @@ public class laBaioAppController {
     private Button btnLeggi4;
 
     @FXML
-    private HBox txtCercaTitolo;
-
-    @FXML
     private TextField txtTitolo;
 
     @FXML
@@ -79,6 +75,9 @@ public class laBaioAppController {
 
     @FXML
     private DatePicker cbxData;
+
+    @FXML
+    private Label lblPagine;
 
     @FXML
     private Button btnRecenti;
@@ -92,7 +91,7 @@ public class laBaioAppController {
     @FXML
     void doCerca(ActionEvent event) {
     	articoli.clear();
-    	List<Articolo> risultatoRicerca = new ArrayList<>(model.ricerca(txtTitolo.getText(), 
+    	List<Articolo> risultatoRicerca = new ArrayList<>(model.ricerca(txtTitolo.getText(),
     			cbxAutore.getValue(), cbxMostrina.getValue(), cbxData.getValue()));
     	articoli.addAll(risultatoRicerca);
     	set();
@@ -176,6 +175,8 @@ public class laBaioAppController {
 		if(N>=articoli.size())
 			btnVecchi.setDisable(true);
 
+		lblPagine.setText("pagina "+(N/5+1)+" di "+(articoli.size()/5+1));
+
     }
 
     @FXML
@@ -231,10 +232,11 @@ public class laBaioAppController {
         	btnLeggi4.setDisable(true);
     	}
 
-		if(N>=articoli.size())
+		if(N>=5)
 			btnRecenti.setDisable(false);
 		if(N>=articoli.size())
 			btnVecchi.setDisable(true);
+		lblPagine.setText("pagina "+(N/5+1)+" di "+(articoli.size()/5+1));
     }
 
 
@@ -246,13 +248,13 @@ public class laBaioAppController {
          assert lblTitolo2 != null : "fx:id=\"lblTitolo2\" was not injected: check your FXML file 'laBaioApp.fxml'.";
          assert lblTitolo3 != null : "fx:id=\"lblTitolo3\" was not injected: check your FXML file 'laBaioApp.fxml'.";
          assert lblTitolo4 != null : "fx:id=\"lblTitolo4\" was not injected: check your FXML file 'laBaioApp.fxml'.";
-         assert txtCercaTitolo != null : "fx:id=\"txtCercaTitolo\" was not injected: check your FXML file 'laBaioApp.fxml'.";
          assert txtTitolo != null : "fx:id=\"txtTitolo\" was not injected: check your FXML file 'laBaioApp.fxml'.";
          assert cbxAutore != null : "fx:id=\"cbxAutore\" was not injected: check your FXML file 'laBaioApp.fxml'.";
          assert cbxMostrina != null : "fx:id=\"cbxMostrina\" was not injected: check your FXML file 'laBaioApp.fxml'.";
          assert cbxData != null : "fx:id=\"cbxData\" was not injected: check your FXML file 'laBaioApp.fxml'.";
          assert btnRecenti != null : "fx:id=\"btnRecenti\" was not injected: check your FXML file 'laBaioApp.fxml'.";
          assert btnVecchi != null : "fx:id=\"btnVecchi\" was not injected: check your FXML file 'laBaioApp.fxml'.";
+         assert lblPagine != null : "fx:id=\"lblPagine\" was not injected: check your FXML file 'laBaioApp.fxml'.";
          assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'laBaioApp.fxml'.";
     }
 
@@ -266,7 +268,6 @@ public class laBaioAppController {
 			model.updateFileBackup();
 			System.out.println("Caricati "+model.getAllArticoli().size()+" articoli");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		cbxAutore.getItems().addAll(model.getAllPenne());
@@ -286,18 +287,20 @@ public class laBaioAppController {
 
 	private void reSet(){
 		articoli = new ArrayList<>(model.getAllArticoliOrderByDate());
-				
+
 		set();
-		
+
 		btnVecchi.setDisable(false);
 		btnReset.setDisable(true);
 		txtTitolo.clear();
 		cbxAutore.getSelectionModel().clearSelection();
 		cbxMostrina.getSelectionModel().clearSelection();
-		cbxData.getEditor().clear();
+		cbxData.setValue(null);
 	}
 
 	private void set(){
+		lblRicerca.setText("Caricati "+articoli.size()+" articoli ("+model.getNumUpdatedArticols()+" nuovi)");
+
 		N=0;
 		if(N<articoli.size()){
 			lblTitolo0.setDisable(false);
@@ -358,5 +361,7 @@ public class laBaioAppController {
 			btnVecchi.setDisable(false);
 		if(N>=articoli.size())
 			btnVecchi.setDisable(true);
+		lblPagine.setText("pagina "+(N/5+1)+" di "+(articoli.size()/5+1));
+
 	}
 }

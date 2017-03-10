@@ -18,7 +18,6 @@ import java.util.Set;
 import it.molis.baionetta.beans.Articolo;
 import it.molis.baionetta.beans.Mostrina;
 import it.molis.baionetta.beans.Penna;
-import it.molis.baionetta.beans.RisultatoRicerca;
 import it.molis.baionetta.feed.Feed;
 import it.molis.baionetta.feed.FeedMessage;
 import it.molis.baionetta.feed.FeedReader;
@@ -28,6 +27,9 @@ public class Model {
 	private Set<Articolo> articoli = new HashSet<>();
 	private Set<Penna> penne = new HashSet<>();
 	private Set<Mostrina> mostrine = new HashSet<>();
+
+	private int numArtOld;
+	private int numArtNew;
 
 	private String feedUrl = "https://labaionetta.blogspot.com/feeds/posts/default?alt=rss";
 
@@ -86,10 +88,9 @@ public class Model {
 				p.setArticolo(a);
 				m.setArticolo(a);
 			}
-
+			numArtOld=articoli.size();
 			reader.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -134,7 +135,7 @@ public class Model {
 
 			out.append(content);
 		}
-		//System.out.println("Done");
+		numArtNew=articoli.size();
 		out.close();
 
 	}
@@ -198,14 +199,12 @@ public class Model {
 	}
 
 	public List<Articolo> ricerca(String testo, Penna p, Mostrina m, LocalDate data){
-		Set<RisultatoRicerca> rrTutto = new HashSet<>();
 
 		Set<Articolo> rrSet = new HashSet<>();
-		Set<Articolo> articoliRicerca = new HashSet<>();
 		System.out.println("Inizio ricerca");
 
 		boolean flag;
-		
+
 		for (Articolo a : articoli){
 			flag = true;
 			if(!testo.isEmpty() && !a.getTitolo().contains(testo)){
@@ -226,5 +225,9 @@ public class Model {
 		}
 
 		return orderByDate(rrSet);
+	}
+
+	public int getNumUpdatedArticols(){
+		return numArtNew-numArtOld;
 	}
 }
