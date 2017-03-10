@@ -96,6 +96,7 @@ public class laBaioAppController {
     			cbxAutore.getValue(), cbxMostrina.getValue(), cbxData.getValue()));
     	articoli.addAll(risultatoRicerca);
     	set();
+    	btnReset.setDisable(false);
     }
 
     @FXML
@@ -188,39 +189,39 @@ public class laBaioAppController {
     	if(N<articoli.size()){
     		lblTitolo0.setText(articoli.get(N).toString());
     		System.out.println(""+articoli.get(N).getTitolo()+"//"+N);
-    		N++;
     	}else {
     		lblTitolo0.setText("Hai letto tutti gli articoli corrispondenti a questa ricerca");
         	lblTitolo0.setDisable(true);
         	btnLeggi0.setDisable(true);
     	}
+		N++;
     	if(N<articoli.size()){
     		lblTitolo1.setText(articoli.get(N).toString());
     		System.out.println(""+articoli.get(N).getTitolo()+"//"+N);
-    		N++;
     	}else{
     		lblTitolo1.setText("Hai letto tutti gli articoli corrispondenti a questa ricerca");
         	lblTitolo1.setDisable(true);
         	btnLeggi1.setDisable(true);
     	}
+		N++;
     	if(N<articoli.size()){
     		lblTitolo2.setText(articoli.get(N).toString());
     		System.out.println(""+articoli.get(N).getTitolo()+"//"+N);
-    		N++;
     	}else {
     		lblTitolo2.setText("Hai letto tutti gli articoli corrispondenti a questa ricerca");
         	lblTitolo2.setDisable(true);
         	btnLeggi2.setDisable(true);
     	}
+		N++;
     	if(N<articoli.size()){
     		lblTitolo3.setText(articoli.get(N).toString());
     		System.out.println(""+articoli.get(N).getTitolo()+"//"+N);
-    		N++;
     	}else {
     		lblTitolo3.setText("Hai letto tutti gli articoli corrispondenti a questa ricerca");
         	lblTitolo3.setDisable(true);
         	btnLeggi3.setDisable(true);
     	}
+		N++;
     	if(N<articoli.size()){
     		lblTitolo4.setText(articoli.get(N).toString());
     		System.out.println(""+articoli.get(N).getTitolo()+"//"+N);
@@ -230,7 +231,7 @@ public class laBaioAppController {
         	btnLeggi4.setDisable(true);
     	}
 
-		if(N<=articoli.size())
+		if(N>=articoli.size())
 			btnRecenti.setDisable(false);
 		if(N>=articoli.size())
 			btnVecchi.setDisable(true);
@@ -285,17 +286,15 @@ public class laBaioAppController {
 
 	private void reSet(){
 		articoli = new ArrayList<>(model.getAllArticoliOrderByDate());
-		lblTitolo0.setText(articoli.get(N).toString());
-		N++;
-		lblTitolo1.setText(articoli.get(N).toString());
-		N++;
-		lblTitolo2.setText(articoli.get(N).toString());
-		N++;
-		lblTitolo3.setText(articoli.get(N).toString());
-		N++;
-		lblTitolo4.setText(articoli.get(N).toString());
-
+				
+		set();
+		
 		btnVecchi.setDisable(false);
+		btnReset.setDisable(true);
+		txtTitolo.clear();
+		cbxAutore.getSelectionModel().clearSelection();
+		cbxMostrina.getSelectionModel().clearSelection();
+		cbxData.getEditor().clear();
 	}
 
 	private void set(){
@@ -305,45 +304,45 @@ public class laBaioAppController {
         	btnLeggi0.setDisable(false);
     		lblTitolo0.setText(articoli.get(N).toString());
     		System.out.println(""+articoli.get(N).getTitolo()+"//"+N);
-    		N++;
     	}else {
     		lblTitolo0.setText("Hai letto tutti gli articoli corrispondenti a questa ricerca");
         	lblTitolo0.setDisable(true);
         	btnLeggi0.setDisable(true);
     	}
+		N=1;
         if(N<articoli.size()){
         	lblTitolo1.setDisable(false);
         	btnLeggi1.setDisable(false);
         	lblTitolo1.setText(articoli.get(N).toString());
         	System.out.println(""+articoli.get(N).getTitolo()+"//"+N);
-        	N++;
         }else {
         	lblTitolo1.setText("Hai letto tutti gli articoli corrispondenti a questa ricerca");
             lblTitolo1.setDisable(true);
             btnLeggi1.setDisable(true);
         }
+        N=2;
         if(N<articoli.size()){
         	lblTitolo2.setDisable(false);
         	btnLeggi2.setDisable(false);
     		lblTitolo2.setText(articoli.get(N).toString());
     		System.out.println(""+articoli.get(N).getTitolo()+"//"+N);
-    		N++;
     	}else {
     		lblTitolo2.setText("Hai letto tutti gli articoli corrispondenti a questa ricerca");
         	lblTitolo2.setDisable(true);
         	btnLeggi2.setDisable(true);
     	}
+        N=3;
         if(N<articoli.size()){
         	lblTitolo3.setDisable(false);
         	btnLeggi3.setDisable(false);
     		lblTitolo3.setText(articoli.get(N).toString());
     		System.out.println(""+articoli.get(N).getTitolo()+"//"+N);
-    		N++;
     	}else {
     		lblTitolo3.setText("Hai letto tutti gli articoli corrispondenti a questa ricerca");
         	lblTitolo3.setDisable(true);
         	btnLeggi3.setDisable(true);
     	}
+        N=4;
         if(N<articoli.size()){
         	lblTitolo4.setDisable(false);
         	btnLeggi4.setDisable(false);
@@ -354,11 +353,10 @@ public class laBaioAppController {
         	lblTitolo4.setDisable(true);
         	btnLeggi4.setDisable(true);
     	}
-
+        System.out.println(N);
 		if(N<=articoli.size())
 			btnVecchi.setDisable(false);
 		if(N>=articoli.size())
 			btnVecchi.setDisable(true);
-
 	}
 }
