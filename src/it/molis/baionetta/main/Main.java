@@ -18,12 +18,12 @@ public class Main {
 
 
 		try {
-			//FxmlReader fxmlr = new FxmlReader();
-			//fxmlr.read();
+			FxmlReader fxmlr = new FxmlReader();
+			fxmlr.read();
 			bc.getArticoliFromFile();
 			bc.getArticoliFromRss();
 			System.out.println(bc.getAllArticoli().size());
-			bc.updateFileBackup();
+			//bc.updateFileBackup();
 		} catch (IOException e) {
 		e.printStackTrace();
 		}

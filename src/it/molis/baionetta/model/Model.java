@@ -123,6 +123,7 @@ public class Model {
 	public void updateFileBackup() throws IOException{
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/BaioBackup.molis")));
 		for (Articolo a : articoli){
+			if(!a.getMostrina().getMostrina().isEmpty() && !a.getTitolo().isEmpty() && !a.getLink().isEmpty() && !a.getPenna().getNome().isEmpty()){
 			String content = ""
 					+a.getData().toString()+"<> "
 					+a.getMostrina().getMostrina()+"<> "
@@ -131,6 +132,7 @@ public class Model {
 					+a.getPenna().getNome()+"\n";
 
 			out.append(content);
+		}
 		}
 		//System.out.println("Done");
 		out.close();

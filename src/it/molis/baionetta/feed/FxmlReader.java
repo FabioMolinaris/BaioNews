@@ -19,7 +19,7 @@ public class FxmlReader {
 	//quella classe non viene più chiamata e non dovrà più essere chiamata salvo imprevisti
 	//per evitare strani problemi il file di backup del sito è stato eliminato
 
-	File fXmlFile = new File("/home/fabio/workspace/BaioNews/src/blog-03-06-2017.xml");
+	File fXmlFile = new File("/home/fabio/Downloads/blog-05-11-2017.xml");
 
 	public void read(){
 
@@ -35,7 +35,7 @@ public class FxmlReader {
 			NodeList nList = doc.getElementsByTagName("entry");
 
 			System.out.println("----------------------------");
-			PrintWriter writer = new PrintWriter("/home/fabio/workspace/BaioNews/src/BaioBackup.molis", "UTF-8");
+			PrintWriter writer = new PrintWriter("src/BaioBackup.molis", "UTF-8");
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 
