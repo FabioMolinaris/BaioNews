@@ -64,7 +64,7 @@ public class Model {
 		String s;
 		BufferedReader reader;
 		try {
-			reader = new BufferedReader(new FileReader("/home/fabio/workspace/BaioNews_App/src/BaioBackup.molis"));
+			reader = new BufferedReader(new FileReader("src/BaioBackup.molis"));
 			while( (s = reader.readLine()) != null ){
 
 				Articolo a = new Articolo(null, null, null, null, null);
@@ -125,7 +125,7 @@ public class Model {
 	}
 
 	public void updateFileBackup() throws IOException{
-		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("/home/fabio/workspace/BaioNews_App/src/BaioBackup.molis")));
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("src/BaioBackup.molis")));
 		for (Articolo a : articoli){
 			String content = ""+a.getData().toString()+"<> "
 					+a.getMostrina().getMostrina()+"<> "
